@@ -1,8 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Tajawal:wght@400;700&display=swap');
 
+:root {
+  --main-bg: #2A4759;
+  --container-bg: #DDDDDD;
+  --card-bg: #EEEEEE;
+  --accent: #F79B72;
+  --accent-hover: #e1814b;
+  --danger: #d32f2f;
+  --danger-hover: #b71c1c;
+  --text-main: #23262b;
+  --text-muted: #555e6a;
+  --status-bg: #e7e7e7;
+  --status-warn: #F79B72;
+  --modal-bg: #EEEEEE;
+  --shadow: 0 0 16px rgba(42, 71, 89, 0.10);
+}
+
 body {
-  background-color: #111;
-  color: #f1f1f1;
+  background-color: var(--main-bg);
+  color: var(--text-main);
   margin: 0;
   direction: rtl;
   text-align: right;
@@ -14,31 +30,41 @@ body {
   width: 100%;
   max-width: 100%;
   padding: 20px 15px;
-  background-color: #1a1a1a;
+  background-color: var(--container-bg);
   text-align: center;
   min-height: 100vh;
   box-sizing: border-box;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 h1 {
   margin-bottom: 20px;
-  color: #00ffcc;
+  color: var(--accent);
   font-size: 24px;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 textarea {
   width: 90%;
   height: 120px;
   border-radius: 10px;
-  border: none;
+  border: 1.5px solid #bbbbbb;
   padding: 12px;
   font-size: 17px;
   margin-bottom: 15px;
   direction: rtl;
   text-align: right;
-  background-color: #2a2a2a;
-  color: white;
+  background-color: var(--card-bg);
+  color: var(--text-main);
   font-family: 'Tajawal', 'Cairo', sans-serif;
+  transition: border 0.2s;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
 }
 
 input[type="password"] {
@@ -46,11 +72,17 @@ input[type="password"] {
   padding: 12px;
   font-size: 16px;
   border-radius: 8px;
-  border: none;
-  background-color: #2a2a2a;
-  color: white;
+  border: 1.5px solid #bbbbbb;
+  background-color: var(--card-bg);
+  color: var(--text-main);
   margin-bottom: 10px;
   font-family: 'Tajawal', 'Cairo', sans-serif;
+  transition: border 0.2s;
+}
+
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--accent);
 }
 
 button {
@@ -62,22 +94,36 @@ button {
   cursor: pointer;
   margin: 6px 0;
   font-family: 'Tajawal', 'Cairo', sans-serif;
-  background-color: #00ffcc;
-  color: #111;
+  background-color: var(--accent);
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: background 0.2s;
+  box-shadow: var(--shadow);
 }
 
 button:hover {
-  background-color: #00ddb8;
+  background-color: var(--accent-hover);
 }
 
 button.cancel {
-  background-color: #888;
-  color: white;
+  background-color: #bbbbbb;
+  color: var(--text-main);
 }
 
-button.danger {
-  background-color: #b00020;
-  color: white;
+button.cancel:hover {
+  background-color: #aaaaaa;
+}
+
+button.danger,
+.answered-card button {
+  background-color: var(--danger);
+  color: #fff;
+}
+
+button.danger:hover,
+.answered-card button:hover {
+  background-color: var(--danger-hover);
 }
 
 .top-bar {
@@ -91,10 +137,11 @@ button.danger {
 .status {
   margin-top: 15px;
   font-size: 14px;
-  background: #222;
+  background: var(--status-bg);
   padding: 10px;
   border-radius: 8px;
-  color: #ffc107;
+  color: var(--status-warn);
+  box-shadow: var(--shadow);
 }
 
 .answered-section {
@@ -102,40 +149,47 @@ button.danger {
 }
 
 .answered-card {
-  background-color: #1e1e1e;
+  background-color: var(--card-bg);
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 15px;
-  color: #eee;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  color: var(--text-main);
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s;
+}
+
+.answered-card:hover {
+  box-shadow: 0 0 16px 2px #F79B7215;
 }
 
 .answered-card button {
   margin-top: 10px;
-  background-color: #b00020;
-  color: white;
+  background-color: var(--danger);
+  color: #fff;
   border: none;
   padding: 8px 14px;
   cursor: pointer;
   border-radius: 6px;
   font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
 }
 
 .timestamp {
-  font-size: 0.85em;
-  color: #aaa;
+  font-size: 0.87em;
+  color: var(--text-muted);
   margin-top: 8px;
 }
 
 .timestamp a {
-  color: #aaa;
+  color: var(--accent);
   text-decoration: none;
-  font-size: 0.85em;
+  font-size: 0.87em;
 }
 
 .timestamp a:hover {
   text-decoration: underline;
-  color: #ddd;
+  color: var(--accent-hover);
 }
 
 .modal {
@@ -144,7 +198,7 @@ button.danger {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(42, 71, 89, 0.87);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,14 +206,14 @@ button.danger {
 }
 
 .modal-content {
-  background: #222;
+  background: var(--modal-bg);
   padding: 25px;
   border-radius: 12px;
   text-align: center;
-  color: white;
+  color: var(--text-main);
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  box-shadow: var(--shadow);
 }
 
 .modal-content input {
@@ -177,24 +231,41 @@ button.danger {
   position: fixed;
   bottom: 10px;
   right: 10px;
-  font-size: 20px;
+  font-size: 22px;
   cursor: pointer;
   z-index: 999;
   user-select: none;
-  transition: transform 0.2s ease;
+  transition: transform 0.22s cubic-bezier(.22,.61,.36,1);
+  filter: drop-shadow(0 0 5px #f79b7270);
 }
 
 .cat-button:hover {
-  transform: scale(1.2);
+  transform: scale(1.22) rotate(-8deg);
+}
+
+.refresh-button {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 999;
+  user-select: none;
+  transition: transform 0.18s cubic-bezier(.22,.61,.36,1);
+  filter: drop-shadow(0 0 4px #f79b7265);
+}
+
+.refresh-button:hover {
+  transform: rotate(90deg) scale(1.12);
 }
 
 /* للشاشات المتوسطة والكمبيوتر */
 @media (min-width: 600px) {
   .container {
-    max-width: 500px;
-    margin: 50px auto;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    max-width: 540px;
+    margin: 52px auto;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
   }
 
   .top-bar {
@@ -208,19 +279,4 @@ button.danger {
     margin: 5px;
     padding: 10px 20px;
   }
-}
-
-.refresh-button {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 999;
-  user-select: none;
-  transition: transform 0.2s ease;
-}
-
-.refresh-button:hover {
-  transform: rotate(90deg);
 }
