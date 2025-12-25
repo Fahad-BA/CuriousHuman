@@ -1,19 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Tajawal:wght@400;700&display=swap');
 
 :root {
-  --main-bg: #2A4759;
-  --container-bg: #DDDDDD;
-  --card-bg: #EEEEEE;
-  --accent: #F79B72;
-  --accent-hover: #e1814b;
-  --danger: #d32f2f;
-  --danger-hover: #b71c1c;
-  --text-main: #23262b;
-  --text-muted: #555e6a;
-  --status-bg: #e7e7e7;
-  --status-warn: #F79B72;
-  --modal-bg: #EEEEEE;
-  --shadow: 0 0 16px rgba(42, 71, 89, 0.10);
+  /* ألوان الوضع الداكن الهادئ */
+  --main-bg: #1A1A2E; /* خلفية داكنة جداً (أزرق غامق مائل للسواد) */
+  --container-bg: #272740; /* خلفية الحاوية الرئيسية (أزرق غامق) */
+  --card-bg: #32324C; /* خلفية البطاقات/العناصر (أغمق قليلاً) */
+  
+  --accent: #FFD479; /* لون مميز دافئ وهادئ (ذهبي/أصفر فاتح) */
+  --accent-hover: #E6B86C; /* عند التمرير على اللون المميز */
+  
+  --danger: #E9573F; /* لون الخطر (أحمر هادئ) */
+  --danger-hover: #D04F3B; /* عند التمرير على لون الخطر */
+  
+  --text-main: #EAEAEA; /* لون النص الرئيسي (أبيض فاتح) */
+  --text-muted: #B3B3CC; /* لون النص الثانوي/الخافت (رمادي فاتح) */
+  
+  --status-bg: #40405A; /* خلفية شريط الحالة */
+  --status-warn: #FFD479; /* لون تحذير مطابق للـ Accent */
+  
+  --modal-bg: #32324C; /* خلفية النافذة المنبثقة (نفس لون البطاقة) */
+  --shadow: 0 4px 18px rgba(0, 0, 0, 0.45); /* ظل داكن وعميق */
 }
 
 body {
@@ -41,84 +47,92 @@ body {
 h1 {
   margin-bottom: 20px;
   color: var(--accent);
-  font-size: 24px;
-  letter-spacing: 1px;
+  font-size: 26px; /* زيادة حجم الخط قليلاً */
+  letter-spacing: 0.5px;
   font-weight: 700;
 }
 
 textarea {
   width: 90%;
   height: 120px;
-  border-radius: 10px;
-  border: 1.5px solid #bbbbbb;
-  padding: 12px;
-  font-size: 17px;
+  border-radius: 12px; /* زيادة زاوية الدوران قليلاً */
+  border: 1.5px solid #5A5A70; /* حدود أغمق */
+  padding: 14px;
+  font-size: 18px; /* زيادة حجم الخط قليلاً */
   margin-bottom: 15px;
   direction: rtl;
   text-align: right;
   background-color: var(--card-bg);
   color: var(--text-main);
   font-family: 'Tajawal', 'Cairo', sans-serif;
-  transition: border 0.2s;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  resize: vertical;
 }
 
 textarea:focus {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 212, 121, 0.3); /* ظل تركيز هادئ */
 }
 
 input[type="password"] {
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  border-radius: 8px;
-  border: 1.5px solid #bbbbbb;
+  border-radius: 10px;
+  border: 1.5px solid #5A5A70;
   background-color: var(--card-bg);
   color: var(--text-main);
   margin-bottom: 10px;
   font-family: 'Tajawal', 'Cairo', sans-serif;
-  transition: border 0.2s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input[type="password"]:focus {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 212, 121, 0.3);
 }
 
 button {
   width: 100%;
-  padding: 14px 0;
-  font-size: 16px;
+  padding: 15px 0;
+  font-size: 17px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  margin: 6px 0;
+  margin: 8px 0;
   font-family: 'Tajawal', 'Cairo', sans-serif;
   background-color: var(--accent);
-  color: #fff;
+  color: var(--container-bg); /* لون نص الزر داكن لتباين أفضل */
   font-weight: bold;
   letter-spacing: 0.5px;
-  transition: background 0.2s;
+  transition: background 0.3s, transform 0.1s;
   box-shadow: var(--shadow);
 }
 
 button:hover {
   background-color: var(--accent-hover);
+  transform: translateY(-1px); /* تأثير بسيط عند التحويم */
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 button.cancel {
-  background-color: #bbbbbb;
+  background-color: #5A5A70; /* لون رمادي داكن هادئ */
   color: var(--text-main);
 }
 
 button.cancel:hover {
-  background-color: #aaaaaa;
+  background-color: #4C4C63;
 }
 
 button.danger,
 .answered-card button {
   background-color: var(--danger);
-  color: #fff;
+  color: var(--text-main); /* استخدام نص فاتح */
 }
 
 button.danger:hover,
@@ -129,62 +143,70 @@ button.danger:hover,
 .top-bar {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px; /* زيادة المسافة */
   align-items: stretch;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .status {
   margin-top: 15px;
-  font-size: 14px;
+  font-size: 15px;
   background: var(--status-bg);
-  padding: 10px;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 10px;
   color: var(--status-warn);
   box-shadow: var(--shadow);
+  font-weight: 500;
 }
 
 .answered-section {
-  margin-top: 30px;
+  margin-top: 35px;
 }
 
 .answered-card {
   background-color: var(--card-bg);
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 15px;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 18px;
   color: var(--text-main);
   box-shadow: var(--shadow);
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.3s;
 }
 
 .answered-card:hover {
-  box-shadow: 0 0 16px 2px #F79B7215;
+  box-shadow: 0 0 20px 2px rgba(255, 212, 121, 0.15); /* ظل خفيف بلون الـ Accent */
 }
 
 .answered-card button {
-  margin-top: 10px;
+  margin-top: 12px;
   background-color: var(--danger);
-  color: #fff;
+  color: var(--text-main);
   border: none;
-  padding: 8px 14px;
+  padding: 10px 18px;
   cursor: pointer;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  transition: background 0.2s;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.3s;
+  box-shadow: none; /* إزالة الظل من الزر داخل البطاقة */
+}
+
+.answered-card button:hover {
+    transform: none;
+    background-color: var(--danger-hover);
 }
 
 .timestamp {
-  font-size: 0.87em;
+  font-size: 0.9em;
   color: var(--text-muted);
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .timestamp a {
   color: var(--accent);
   text-decoration: none;
-  font-size: 0.87em;
+  font-size: 1em;
+  transition: color 0.3s;
 }
 
 .timestamp a:hover {
@@ -198,7 +220,7 @@ button.danger:hover,
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(42, 71, 89, 0.87);
+  background: rgba(26, 26, 46, 0.9); /* خلفية داكنة مع شفافية */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -207,65 +229,52 @@ button.danger:hover,
 
 .modal-content {
   background: var(--modal-bg);
-  padding: 25px;
-  border-radius: 12px;
+  padding: 30px;
+  border-radius: 15px;
   text-align: center;
   color: var(--text-main);
   width: 90%;
-  max-width: 400px;
+  max-width: 450px;
   box-shadow: var(--shadow);
 }
 
 .modal-content input {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
   font-family: 'Tajawal', 'Cairo', sans-serif;
+  border-radius: 8px;
+  background-color: #40405A; /* لون إدخال مختلف قليلاً */
+  color: var(--text-main);
+  border: 1px solid #5A5A70;
 }
 
 .modal-content button {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
-.cat-button {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  font-size: 22px;
-  cursor: pointer;
-  z-index: 999;
-  user-select: none;
-  transition: transform 0.22s cubic-bezier(.22,.61,.36,1);
-  filter: drop-shadow(0 0 5px #f79b7270);
+/* الأزرار الثابتة في الزاوية */
+.cat-button, .refresh-button {
+  bottom: 20px; /* إبعادها عن الحافة */
+  filter: drop-shadow(0 0 8px rgba(255, 212, 121, 0.5)); /* ظل أكثر وضوحاً */
 }
 
 .cat-button:hover {
-  transform: scale(1.22) rotate(-8deg);
-}
-
-.refresh-button {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  font-size: 22px;
-  cursor: pointer;
-  z-index: 999;
-  user-select: none;
-  transition: transform 0.18s cubic-bezier(.22,.61,.36,1);
-  filter: drop-shadow(0 0 4px #f79b7265);
+  transform: scale(1.25) rotate(-10deg);
 }
 
 .refresh-button:hover {
-  transform: rotate(90deg) scale(1.12);
+  transform: rotate(110deg) scale(1.15);
 }
 
 /* للشاشات المتوسطة والكمبيوتر */
 @media (min-width: 600px) {
   .container {
-    max-width: 540px;
-    margin: 52px auto;
-    border-radius: 15px;
+    max-width: 600px; /* زيادة العرض قليلاً */
+    margin: 60px auto; /* زيادة الهامش العلوي والسفلي */
+    border-radius: 20px; /* زيادة زاوية الدوران */
     box-shadow: var(--shadow);
+    min-height: auto; /* لضمان أن الحاوية تتسع للمحتوى فقط */
   }
 
   .top-bar {
@@ -277,6 +286,6 @@ button.danger:hover,
   button {
     width: auto;
     margin: 5px;
-    padding: 10px 20px;
+    padding: 12px 25px;
   }
 }
