@@ -1,25 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Tajawal:wght@400;700&display=swap');
 
 :root {
-  /* ألوان الوضع الداكن الهادئ */
-  --main-bg: #1A1A2E; /* خلفية داكنة جداً (أزرق غامق مائل للسواد) */
-  --container-bg: #272740; /* خلفية الحاوية الرئيسية (أزرق غامق) */
-  --card-bg: #32324C; /* خلفية البطاقات/العناصر (أغمق قليلاً) */
+  /* ألوان لوحة الألوان الجديدة */
+  --main-bg: #1b3c53; /* أزرق داكن (خلفية رئيسية) */
+  --container-bg: #234c6a; /* أزرق متوسط (خلفية الحاوية) */
+  --card-bg: #456882; /* أزرق فاتح (خلفية البطاقات) */
   
-  --accent: #FFD479; /* لون مميز دافئ وهادئ (ذهبي/أصفر فاتح) */
-  --accent-hover: #E6B86C; /* عند التمرير على اللون المميز */
+  --accent: #d2c1b6; /* بيج/ترابي (لون مميز رئيسي) */
+  --accent-hover: #c4b0a3; /* بيج/ترابي أغمق (عند التمرير) */
   
-  --danger: #E9573F; /* لون الخطر (أحمر هادئ) */
-  --danger-hover: #D04F3B; /* عند التمرير على لون الخطر */
+  --danger: #e74c3c; /* أحمر (لون الخطر) */
+  --danger-hover: #c0392b; /* أحمر أغمق (عند التمرير) */
   
-  --text-main: #EAEAEA; /* لون النص الرئيسي (أبيض فاتح) */
-  --text-muted: #B3B3CC; /* لون النص الثانوي/الخافت (رمادي فاتح) */
+  --text-main: #ffffff; /* أبيض (لون النص الرئيسي) */
+  --text-muted: #d2c1b6; /* بيج/ترابي (لون النص الثانوي) */
   
-  --status-bg: #40405A; /* خلفية شريط الحالة */
-  --status-warn: #FFD479; /* لون تحذير مطابق للـ Accent */
+  --status-bg: #456882; /* أزرق فاتح (خلفية شريط الحالة) */
+  --status-warn: #d2c1b6; /* بيج/ترابي (لون تحذير مطابق للـ Accent) */
   
-  --modal-bg: #32324C; /* خلفية النافذة المنبثقة (نفس لون البطاقة) */
-  --shadow: 0 4px 18px rgba(0, 0, 0, 0.45); /* ظل داكن وعميق */
+  --modal-bg: #456882; /* أزرق فاتح (خلفية النافذة المنبثقة) */
+  --shadow: 0 4px 18px rgba(0, 0, 0, 0.3); /* ظل متوازن */
 }
 
 body {
@@ -56,7 +56,7 @@ textarea {
   width: 90%;
   height: 120px;
   border-radius: 12px; /* زيادة زاوية الدوران قليلاً */
-  border: 1.5px solid #5A5A70; /* حدود أغمق */
+  border: 1.5px solid var(--container-bg); /* حدود باستخدام لون الحاوية */
   padding: 14px;
   font-size: 18px; /* زيادة حجم الخط قليلاً */
   margin-bottom: 15px;
@@ -72,7 +72,7 @@ textarea {
 textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(255, 212, 121, 0.3); /* ظل تركيز هادئ */
+  box-shadow: 0 0 0 3px rgba(210, 193, 182, 0.4); /* ظل تركيز بلون الأكسنت الجديد */
 }
 
 input[type="password"] {
@@ -80,7 +80,7 @@ input[type="password"] {
   padding: 12px;
   font-size: 16px;
   border-radius: 10px;
-  border: 1.5px solid #5A5A70;
+  border: 1.5px solid var(--container-bg);
   background-color: var(--card-bg);
   color: var(--text-main);
   margin-bottom: 10px;
@@ -91,7 +91,7 @@ input[type="password"] {
 input[type="password"]:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(255, 212, 121, 0.3);
+  box-shadow: 0 0 0 3px rgba(210, 193, 182, 0.4);
 }
 
 button {
@@ -121,12 +121,12 @@ button:active {
 }
 
 button.cancel {
-  background-color: #5A5A70; /* لون رمادي داكن هادئ */
+  background-color: var(--container-bg); /* لون أزرق متوسط */
   color: var(--text-main);
 }
 
 button.cancel:hover {
-  background-color: #4C4C63;
+  background-color: var(--main-bg); /* لون أزرق داكن عند التمرير */
 }
 
 button.danger,
@@ -174,7 +174,7 @@ button.danger:hover,
 }
 
 .answered-card:hover {
-  box-shadow: 0 0 20px 2px rgba(255, 212, 121, 0.15); /* ظل خفيف بلون الـ Accent */
+  box-shadow: 0 0 20px 2px rgba(210, 193, 182, 0.25); /* ظل خفيف بلون الأكسنت الجديد */
 }
 
 .answered-card button {
@@ -220,7 +220,7 @@ button.danger:hover,
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(26, 26, 46, 0.9); /* خلفية داكنة مع شفافية */
+  background: rgba(27, 60, 83, 0.9); /* خلفية بلون الرئيسي مع شفافية */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,9 +244,9 @@ button.danger:hover,
   margin-bottom: 12px;
   font-family: 'Tajawal', 'Cairo', sans-serif;
   border-radius: 8px;
-  background-color: #40405A; /* لون إدخال مختلف قليلاً */
+  background-color: var(--container-bg); /* لون الحاوية */
   color: var(--text-main);
-  border: 1px solid #5A5A70;
+  border: 1px solid var(--main-bg); /* حدود بلون الخلفية الرئيسية */
 }
 
 .modal-content button {
@@ -256,7 +256,7 @@ button.danger:hover,
 /* الأزرار الثابتة في الزاوية */
 .cat-button, .refresh-button {
   bottom: 20px; /* إبعادها عن الحافة */
-  filter: drop-shadow(0 0 8px rgba(255, 212, 121, 0.5)); /* ظل أكثر وضوحاً */
+  filter: drop-shadow(0 0 8px rgba(210, 193, 182, 0.6)); /* ظل بلون الأكسنت الجديد */
 }
 
 .cat-button:hover {
