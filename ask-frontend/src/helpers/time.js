@@ -4,11 +4,11 @@ export function formatTimeAgo(dateString) {
   //    يضمن هذا التنسيق أن يتمكن كائن Date من قراءة التاريخ والوقت بشكل صحيح.
   let dateToParse = dateString.replace(' ', 'T');
   
-  // 2. فرض UTC: إذا لم يكن التاريخ يحتوي على مؤشر المنطقة الزمنية (Z أو +XX:XX)، نضيف 'Z'
-  //    لإجبار JavaScript على تفسير التاريخ على أنه توقيت عالمي موحد (UTC)،
-  //    مما يحل مشكلة الـ 3 ساعات التي تحدث في منطقتك (+3:00).
-  if (!dateToParse.toUpperCase().endsWith('Z') && !dateToParse.includes('+') && !dateToParse.includes('-')) {
-      dateToParse = `${dateToParse}Z`; 
+  // 2. إصلاح مشكلة التوقيت: لا نجبر UTC لأن PostgreSQL يخزن بالتوقيت المحلي
+  //    نحتفظ بالتوقيت كما هو بدون إضافة 'Z' لتجنب مشكلة الـ 3 ساعات
+  //    إذا كان التوقيت يحتوي على منطقة زمنية، نستخدمها كما هي
+  if (!dateToParse.includes('+') && !dateToParse.includes('-')) {
+      // لا تضف 'Z' - دع JavaScript يتعامل معه كتوقيت محلي
   }
 
   const date = new Date(dateToParse);

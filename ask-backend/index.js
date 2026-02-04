@@ -18,6 +18,11 @@ const pool = new Pool({
   database: process.env.DB_NAME,
 });
 
+// Set timezone for all connections
+pool.on('connect', (client) => {
+  client.query('SET TIME ZONE \'Asia/Riyadh\'');
+});
+
 // اتصال تجريبي
 pool.connect()
   .then(() => console.log('✅ Connected to PostgreSQL'))
@@ -25,7 +30,7 @@ pool.connect()
 
 // الصفحة الرئيسية
 app.get('/', (req, res) => {
-  res.send('As2ila Backend is running 🎉');
+  res.send('Backend is running 🎉');
 });
 
 // تسجيل دخول الآدمن
@@ -49,7 +54,7 @@ app.post('/ask', async (req, res) => {
 
   try {
     const result = await pool.query(
-      'INSERT INTO questions (question_text, ip_address) VALUES ($1, $2) RETURNING *',
+      'INSERT INTO questions (question_text, ip_address) VALUES ($1, $2) RETURNING id, question_text, ip_address, is_answered, is_hidden, TO_CHAR(created_at AT TIME ZONE \'Asia/Riyadh\', \'YYYY-MM-DD\"T\"HH24:MI:SS.US\') as created_at',
       [question_text.trim(), ip]
     );
 
@@ -64,7 +69,7 @@ app.post('/ask', async (req, res) => {
 app.get('/questions', async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT q.id, q.question_text, a.answer_text, q.created_at, a.created_at AS answered_at
+      `SELECT q.id, q.question_text, a.answer_text, TO_CHAR(q.created_at AT TIME ZONE 'Asia/Riyadh', 'YYYY-MM-DD\"T\"HH24:MI:SS.US') as created_at, TO_CHAR(a.created_at AT TIME ZONE 'Asia/Riyadh', 'YYYY-MM-DD\"T\"HH24:MI:SS.US') AS answered_at
        FROM questions q
        JOIN answers a ON q.id = a.question_id
        WHERE q.is_hidden = false
@@ -81,7 +86,7 @@ app.get('/questions', async (req, res) => {
 app.get('/pending', async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT id, question_text, created_at
+      `SELECT id, question_text, TO_CHAR(created_at AT TIME ZONE 'Asia/Riyadh', 'YYYY-MM-DD\"T\"HH24:MI:SS.US') as created_at
        FROM questions
        WHERE is_answered = false OR is_hidden = true
        ORDER BY created_at ASC`
